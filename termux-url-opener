@@ -1,0 +1,7 @@
+#!/data/data/com.termux/files/usr/bin/bash
+
+args="$@"
+echo $args | grep -E 'http(s)?:\/\/(www\.)?[A-Za-z0-9\.\/\?=&-_%]+' -o >> "/data/data/com.termux/files/home/storage/pictures/links"
+
+yt-dlp $args --exec 'touch -am {}' -o "/data/data/com.termux/files/home/storage/pictures/%(title)s-%(id)s.%(ext)s" -f "worstvideo[height=720]+bestaudio/best[height<=720]" --no-playlist
+termux-media-scan "/data/data/com.termux/files/home/storage/pictures/"

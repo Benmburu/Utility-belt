@@ -1,0 +1,19 @@
+#!/usr/bin/python
+
+import glob, shutil, os
+
+path = os.getcwd()
+
+files = os.listdir()
+
+prompt = input('Do you want to proceed? [yes/no] ')
+if prompt == 'yes':
+    for file in files:
+        if os.path.isdir(file):
+            subfiles = os.listdir(file)
+            for subfile in subfiles:
+                oldpath = path + '/' + file + '/' + subfile
+                shutil.move(oldpath, path)
+            os.rmdir(file)
+        else:
+            pass

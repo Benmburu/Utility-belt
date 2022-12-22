@@ -1,0 +1,8 @@
+#!/data/data/com.termux/files/usr/bin/fish
+
+cd "/data/data/com.termux/files/home/storage/shared/DCIM/Screenshots"
+
+for i in (ls | grep -i duolingo);echo $i (mv $i ~/storage/pictures/duolingo/); end
+
+termux-media-scan "/data/data/com.termux/files/home/storage/pictures/duolingo" "/data/data/com.termux/files/home/storage/shared/DCIM/Screenshots"
+
