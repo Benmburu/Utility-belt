@@ -1,0 +1,18 @@
+#!/usr/bin/python
+#https://api.binance.com/api/v3/ticker/price?symbol=SHIBUSDT
+#https://api.coindesk.com/v1/bpi/currentprice/USD.json 
+
+import requests, json
+from tabulate import tabulate
+
+html = requests.get('https://api.binance.com/api/v3/ticker/price')
+resp = json.loads(html.text)
+cryptos = ['BTTUSDT','BNBUSDT','DOGEUSDT','ETHUSDT','BTCUSDT','SHIBUSDT','XRPUSDT']
+
+filtered = filter(lambda x: x['symbol'] in cryptos, resp)
+formatted = []
+
+for i in filtered:
+    formatted.append([f'{i["symbol"].replace("USDT", "")}', f'${float(i["price"]):,}'])
+
+print(tabulate(formatted, headers=['Crypto', 'Price(USDT)'], tablefmt='pretty'))
